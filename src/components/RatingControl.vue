@@ -1,14 +1,34 @@
 <template>
     <ul>
-        <li><button type="button">Poor</button></li>
+        <li><button type="button" @click="activate">Poor</button></li>
         <li><button type="button">Average</button></li>
         <li><button type="button">Great</button></li>
     </ul>
 </template>
 
+<script>
+export default {
+    data() {
+        return {
+            activeOption: null
+        };
+    },
+    methods: {
+        activate(option) {
+            this.activeOption = option;
+        }
+    }
+}
+</script>
+
 <style scoped>
 .active{
-    border-color: purplea;
+    border-color: purple;
+
+}
+
+.active button{
+    background-color: purple;
 }
     ul {
         list-style: none;
