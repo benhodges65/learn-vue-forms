@@ -1,8 +1,17 @@
 <template>
   <form @submit.prevent="submitForm">
-    <div class="form-control" :class="{invalid: userNameValidity === 'invalid'}">
+    <div
+      class="form-control"
+      :class="{ invalid: userNameValidity === 'invalid' }"
+    >
       <label for="user-name">Your Name</label>
-      <input id="user-name" name="user-name" type="text" v-model="userName" @blur="validateInput" />
+      <input
+        id="user-name"
+        name="user-name"
+        type="text"
+        v-model="userName"
+        @blur="validateInput"
+      />
       <p v-if="userNameValidity === 'invalid'">Please enter a valid name!</p>
     </div>
     <div class="form-control">
@@ -53,23 +62,46 @@
     <div class="form-control">
       <h2>How do you learn?</h2>
       <div>
-        <input id="how-video" name="how" type="radio" value="video" v-model="how" />
+        <input
+          id="how-video"
+          name="how"
+          type="radio"
+          value="video"
+          v-model="how"
+        />
         <label for="how-video">Video Courses</label>
       </div>
       <div>
-        <input id="how-blogs" name="how" type="radio" value="blog" v-model="how" />
+        <input
+          id="how-blogs"
+          name="how"
+          type="radio"
+          value="blog"
+          v-model="how"
+        />
         <label for="how-blogs">Blogs</label>
       </div>
       <div>
-        <input id="how-other" name="how" type="radio" value="other" v-model="how" />
+        <input
+          id="how-other"
+          name="how"
+          type="radio"
+          value="other"
+          v-model="how"
+        />
         <label for="how-other">Other</label>
       </div>
     </div>
     <div class="form-control">
-      <rating-control></rating-control>
+      <rating-control v-model="rating"></rating-control>
     </div>
     <div class="form-control">
-      <input type="checkbox" id="confirm-terms" name="confirm-terms" v-model="confirm" />
+      <input
+        type="checkbox"
+        id="confirm-terms"
+        name="confirm-terms"
+        v-model="confirm"
+      />
       <label for="confirm-terms">Agree to terms of use?</label>
     </div>
     <div>
@@ -82,33 +114,34 @@
 import RatingControl from './RatingControl.vue';
 
 export default {
-    data() {
-        return {
-            userName: '',
-            userAge: null,
-            referrer: 'wom',
-            interest: [],
-            how: null,
-            confirm: false,
-            userNameValidity: 'pending',
-        };
+  data() {
+    return {
+      userName: '',
+      userAge: null,
+      referrer: 'wom',
+      interest: [],
+      how: null,
+      confirm: false,
+      rating: null,
+      userNameValidity: 'pending',
+    };
+  },
+  methods: {
+    submitForm() {
+      console.log(this.interest);
+      console.log(this.how);
+      console.log(this.confirm);
+      this.rating = null;
     },
-    methods: {
-        submitForm() {
-            console.log(this.interest);
-            console.log(this.how);
-            console.log(this.confirm);
-        },
-        validateInput() {
-            if (this.userName === '') {
-                this.userNameValidity = 'invalid';
-            }
-            else {
-                this.userNameValidity = 'valid';
-            }
-        },
+    validateInput() {
+      if (this.userName === '') {
+        this.userNameValidity = 'invalid';
+      } else {
+        this.userNameValidity = 'valid';
+      }
     },
-    components: { RatingControl }
+  },
+  components: { RatingControl },
 };
 </script>
 
@@ -131,7 +164,7 @@ form {
 }
 
 .form-control.invalid label {
-  color:red;
+  color: red;
 }
 
 label {
